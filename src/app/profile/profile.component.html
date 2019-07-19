@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+    <div class="card">
+      <img *ngIf="!isImgLoaded" src="assets/images/profile.jpg" class="card-img-top">
+      <img [hidden]="!isImgLoaded" [src]="profile.avatar" (load)="isImgLoaded = true" class="card-img-top">
+      <div class="card-block">
+        <h4 class="card-title mt-3"><i class="fa fa-id-badge"></i> {{profile.first_name}} {{profile.last_name}}</h4>
+        <div class="card-text">
+            <i class="fa fa-at"></i> {{profile.email}}
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary float-right btn-sm" (click)="profileService.getNextProfile()">Next</button>
+        <button class="btn btn-primary btn-sm" (click)="profileService.getPreviousProfile()">Previous</button>
+      </div>
+    </div>
+  </div>
+</div>
