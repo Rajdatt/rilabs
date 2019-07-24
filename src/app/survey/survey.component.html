@@ -1,0 +1,32 @@
+<div class="row">
+  <form>
+    <div class="form-group" *ngFor='let s of survey;let i = index'>
+      <ng-container *ngIf="i<=2; else third">
+        <label for="exampleFormControlInput1">{{s.qtext}}</label>
+        <div class="form-check" *ngFor="let r of s.rows">
+          <label class="form-check-label">
+            <input class="form-check-input" name="{{i}}" type="radio" [value]="r"
+              (click)="radioClick(i, $event.target.value)">{{r}}</label>
+        </div>
+      </ng-container>
+      <ng-template #third>
+        <ng-container *ngIf="i==3; else four">
+            <label for="exampleFormControlInput1">{{s.qtext}}</label>
+          <div class="custom-control custom-checkbox" *ngFor="let r of s.rows;let j = index">
+            <input type="checkbox" class="custom-control-input" id="{{j}}" value="{{r}}" (click)="beverages(i, $event)">
+            <label class="custom-control-label" for="{{j}}">{{r}}</label>
+          </div>
+        </ng-container>
+      </ng-template>
+      <ng-template #four>
+          <ng-container *ngIf="i==4;">
+            Four
+            <!-- <div class="custom-control custom-checkbox" *ngFor="let r of s.rows">
+              <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+              <label class="custom-control-label" for="customCheck">{{r}}</label>
+            </div> -->
+          </ng-container>
+        </ng-template>
+    </div>
+  </form>
+</div>
